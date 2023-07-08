@@ -22,7 +22,6 @@ export function onProxyResponse(
   if (!requestState?.redirectCount_) {
     res.setHeader('x-request-url', requestState?.location?.href);
   }
-  // Handle redirects
   if (
     statusCode === 301 ||
     statusCode === 302 ||
@@ -41,17 +40,12 @@ export function onProxyResponse(
     }
     if (parsedLocation) {
       if (statusCode === 301 || statusCode === 302 || statusCode === 303) {
-        // Exclude 307 & 308, because they are rare, and require preserving the method + request body
-
         requestState.redirectCount_ = requestState?.redirectCount_ + 1 || 1;
 
         if (
           (requestState?.redirectCount_ || 1) <=
           (requestState?.maxRedirects || 1)
         ) {
-          // Handle redirects within the server, because some clients (e.g. Android Stock Browser)
-          // cancel redirects.
-          // Set header for debugging purposes. Do not try to parse it!
           res.setHeader(
             'X-CORS-Redirect-' + requestState?.redirectCount_,
             statusCode + ' ' + locationHeader
@@ -62,12 +56,8 @@ export function onProxyResponse(
           delete req.headers['content-type'];
           requestState.location = parsedLocation;
 
-          // Remove all listeners (=reset events to initial state)
           req.removeAllListeners();
 
-          // Remove the error listener so that the ECONNRESET "error" that
-          // may occur after aborting a request does not propagate to res.
-          // https://github.com/nodejitsu/node-http-proxy/blob/v1.11.1/lib/http-proxy/passes/web-incoming.js#L134
           proxyReq.removeAllListeners('error');
           proxyReq.once('error', function catchAndIgnoreError() {});
           proxyReq.abort();
@@ -87,6 +77,8 @@ export function onProxyResponse(
   delete (proxyRes as any).headers['set-cookie2'];
 
   (proxyRes as any).headers['x-final-url'] = requestState.location.href;
+  
   withCors((proxyRes as any).headers, req);
+
   return true;
 }

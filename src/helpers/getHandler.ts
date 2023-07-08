@@ -10,17 +10,17 @@ import { parseUrl } from '../helpers/parseUrl';
 
 export function getHandler(options: CreateServerOptions, proxy: Proxy) {
   let corsbypass: Record<string, any> = {
-    handleInitialRequest: null, // Function that may handle the request instead, by returning a truthy value.
-    getProxyForUrl: getProxyForUrl, // Function that specifies the proxy to use
-    maxRedirects: 5, // Maximum number of redirects to be followed.
-    originBlacklist: [], // Requests from these origins will be blocked.
-    originWhitelist: [], // If non-empty, requests not from an origin in this list will be blocked.
-    checkRateLimit: null, // Function that may enforce a rate-limit by returning a non-empty string.
-    redirectSameOrigin: false, // Redirect the client to the requested URL for same-origin requests.
-    requireHeader: null, // Require a header to be set?
-    removeHeaders: [], // Strip these request headers.
-    setHeaders: {}, // Set these request headers.
-    corsMaxAge: 0, // If set, an Access-Control-Max-Age header with this value (in seconds) will be added.
+    handleInitialRequest: null,
+    getProxyForUrl: getProxyForUrl,
+    maxRedirects: 5,
+    originBlacklist: [],
+    originWhitelist: [],
+    checkRateLimit: null,
+    redirectSameOrigin: false,
+    requireHeader: null,
+    removeHeaders: [],
+    setHeaders: {},
+    corsMaxAge: 0,
   };
 
   Object.keys(corsbypass).forEach((option) => {
@@ -29,7 +29,6 @@ export function getHandler(options: CreateServerOptions, proxy: Proxy) {
     }
   });
 
-  // Convert corsbypass.requireHeader to an array of lowercase header names, or null.
   if (corsbypass.requireHeader) {
     if (typeof corsbypass.requireHeader === 'string') {
       corsbypass.requireHeader = [

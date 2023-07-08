@@ -1,4 +1,4 @@
-import { createServer } from './createServer';
+import { createServer } from './server';
 
 const host = process.env.HOST || '0.0.0.0';
 const port = Number(process.env.PORT) || 9090;
