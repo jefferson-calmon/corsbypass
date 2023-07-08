@@ -3,7 +3,7 @@ import fs from 'fs';
 import { Headers, Response } from '../types';
 
 export function renderDocs(headers: Headers, response: Response) {
-  const docFilePath = __dirname + '..//assets/docs.html';
+  const docFilePath = __dirname + '../assets/docs.html';
 
   const isHtml = /\.html$/.test(docFilePath);
 
