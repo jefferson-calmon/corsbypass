@@ -2,7 +2,7 @@ import http from 'http';
 import url from 'url';
 
 import { Proxy, Request, Response } from '../types';
-import { withCors } from './withCORS';
+import { withCors } from './withCors';
 import { proxyRequest } from './proxyRequest';
 import { parseUrl } from './parseUrl';
 

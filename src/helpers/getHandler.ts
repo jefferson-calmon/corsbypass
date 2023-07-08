@@ -4,7 +4,7 @@ import { Proxy, Request, Response, CreateServerOptions } from '../types';
 
 import { renderDocs } from '../helpers/renderDocs';
 import { isValidHostName } from '../helpers/isValidHostName';
-import { withCors } from '../helpers/withCORS';
+import { withCors } from '../helpers/withCors';
 import { proxyRequest } from '../helpers/proxyRequest';
 import { parseUrl } from '../helpers/parseUrl';
 
