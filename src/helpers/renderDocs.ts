@@ -12,13 +12,15 @@ export function renderDocs(headers: Headers, response: Response) {
 
   headers['content-type'] = isHtml ? 'text/html' : 'text/plain';
 
-  fs.readFile(docs, 'utf8', function (err, data) {
-    if (err) {
-      console.error(err);
-      response.writeHead(500, headers);
-      response.end();
-    }
+  response.end(docs);
 
-    response.end(data);
-  });
+  // fs.readFile(docs, 'utf8', function (err, data) {
+  //   if (err) {
+  //     console.error(err);
+  //     response.writeHead(500, headers);
+  //     response.end();
+  //   }
+
+  //   response.end(data);
+  // });
 }
