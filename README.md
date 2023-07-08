@@ -19,7 +19,7 @@ Este serviço, baseado em um proxy hospedado, permite que os desenvolvedores rea
 Para usar o serviço, você só precisa passar a URL do recurso que deseja acessar após o URL do serviço "https://corsbypass-5jyi.onrender.com".
 
 Exemplo:
-![Exemplo](./.github/example.png)
+![Exemplo](https://raw.githubusercontent.com/jefferson-calmon/corsbypass/main/.github/example.png)
 
 Isso solicitará a página principal do Google por meio do serviço "CORS Bypass" e retornará a resposta para o seu navegador, contornando as restrições de CORS. Certifique-se de incluir o protocolo completo (por exemplo, "https://") na URL que você deseja acessar através do serviço.
 
